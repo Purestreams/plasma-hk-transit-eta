@@ -2,9 +2,23 @@
 
 A KDE Plasma 6 widget for multiple selected KMB/LWB, Citybus or New Lantao Bus routes and stops, plus train times for the Airport Express, Tung Chung, Tsuen Wan and Island lines. It refreshes every 30 seconds. Interface languages: English, 简体中文 and 繁體中文, with a system-language option. Each widget instance stores multiple bus routes with separate walking times.
 
+## Preview / 界面预览 / 介面預覽
+
+These locally rendered QML previews use example data, rather than a live desktop capture. The preview renderer adjusts the button text for contrast in the offscreen environment. / 以下为本机 QML 渲染的示例数据，非实时桌面截图；离屏预览调整了按钮文字对比度。 / 以下為本機 QML 渲染的示例資料，並非即時桌面截圖；離屏預覽調整了按鈕文字對比度。
+
+| English | 简体中文 | 繁體中文 |
+| --- | --- | --- |
+| <img src="docs/screenshots/en.png" alt="English widget preview" width="280"> | <img src="docs/screenshots/zh-CN.png" alt="简体中文小组件预览" width="280"> | <img src="docs/screenshots/zh-HK.png" alt="繁體中文小工具預覽" width="280"> |
+
 ## Install
 
-Requires Plasma 6, network access, and the standard Plasma QML components and the KNotifications QML module (`org.kde.notification`). From this folder:
+Requires Plasma 6, network access, the standard Plasma QML components, and the KNotifications QML module (`org.kde.notification`). Download the `.plasmoid` package from [the latest release](https://github.com/Purestreams/plasma-hk-transit-eta/releases/latest), then install it with:
+
+```sh
+kpackagetool6 --type Plasma/Applet --install ./hong-kong-transit-departures-v1.1.0.plasmoid
+```
+
+Alternatively, install from a source checkout:
 
 ```sh
 kpackagetool6 --type Plasma/Applet --install .
@@ -12,7 +26,7 @@ kpackagetool6 --type Plasma/Applet --install .
 kpackagetool6 --type Plasma/Applet --upgrade .
 ```
 
-Enter desktop edit mode → Add Widgets → search for “Hong Kong Transit Departures” (or its translated name). Open **Settings** to select the language, enter walking minutes, and search the route number across KMB/LWB, Citybus and New Lantao Bus, then select an operator, direction and stop from the results. Repeat to add more buses and set each walking time under Saved bus stops. Remove any bus or MTR entry using the Remove button next to it; removal is saved immediately. Citybus matches require the full route number; KMB/LWB and New Lantao Bus also support partial matches. Add MTR entries by choosing a line, station and direction, then set a separate walking time for each entry and, if desired, a destination to exclude short-turn trains. The standard terminus is not repeated beside each arrival; short-turn destinations remain visible. Existing Hong Kong station settings migrate automatically. To apply an update to an already running Plasma session, remove and re-add the widget or restart the Plasma shell. Configuration belongs to the widget instance. Each bus entry names its stop and has its own walking time; adding a new entry leaves its walking time unset. An existing single-bus configuration is migrated on first load.
+Enter desktop edit mode → Add Widgets → search for “Hong Kong Transit Departures” (or its translated name). Open **Settings** to select the language, enter walking minutes, and search the route number across KMB/LWB, Citybus and New Lantao Bus, then select an operator, direction and stop from the results. Repeat to add more buses and set each walking time under Saved bus stops. Remove any bus or MTR entry using the Remove button next to it; removal is saved immediately. All three operators support partial route-number searches; results appear as each provider responds. Add MTR entries by choosing a line, station and direction, then set a separate walking time for each entry and, if desired, a destination to exclude short-turn trains. The standard terminus is not repeated beside each arrival; short-turn destinations remain visible. Existing Hong Kong station settings migrate automatically. To apply an update to an already running Plasma session, remove and re-add the widget or restart the Plasma shell. Configuration belongs to the widget instance. Each bus entry names its stop and has its own walking time; adding a new entry leaves its walking time unset. An existing single-bus configuration is migrated on first load.
 
 ## Departure estimates
 
@@ -31,7 +45,7 @@ Data ownership and applicable [DATA.GOV.HK terms](https://data.gov.hk/en/terms-a
 
 ## Develop and test
 
-The widget is QML with JavaScript modules in `contents/code/`. A new desktop instance defaults to 420 × 600 logical pixels, with scrolling when content exceeds the available area. Run `node tests/test.js` for the headway calculation, boundary conditions, live-data precedence and translation-key coverage. An optional live A12 QML integration test uses PySide6 and Qt/Plasma QML modules: `QT_QPA_PLATFORM=offscreen /usr/bin/python3 tests/integration_qml.py`. It uses an isolated mock configuration and real network APIs. Test the interface on a Plasma 6 desktop with the widget at different sizes. Data endpoints can be unavailable or return partial results.
+The widget is QML with JavaScript modules in `contents/code/`. A new desktop instance defaults to 420 × 600 logical pixels, with scrolling when content exceeds the available area. Run `node tests/test.js` for the headway calculation, boundary conditions, live-data precedence and translation-key coverage. An optional live A12 QML integration test uses PySide6 and Qt/Plasma QML modules: `QT_QPA_PLATFORM=offscreen /usr/bin/python3 tests/integration_qml.py`. It uses an isolated mock configuration and real network APIs. The preview images can be regenerated with `QT_QPA_PLATFORM=offscreen /usr/bin/python3 tools/render-preview.py en docs/screenshots/en.png` (use `sc` or `tc` for Chinese). Test the interface on a Plasma 6 desktop with the widget at different sizes. Data endpoints can be unavailable or return partial results.
 
 ## 简体中文
 
