@@ -15,7 +15,7 @@ These locally rendered QML previews use example data, rather than a live desktop
 Requires KDE Plasma 6, `curl`, `sha256sum`, `kpackagetool6`, and the Plasma/KNotifications QML components. Run:
 
 ```sh
-bash -o pipefail -c 'curl -fsSL https://raw.githubusercontent.com/Purestreams/plasma-hk-transit-eta/main/install.sh | bash'
+bash -o pipefail -c 'curl -fsSL --retry 3 --retry-all-errors https://raw.githubusercontent.com/Purestreams/plasma-hk-transit-eta/main/install.sh | bash'
 ```
 
 The [installer](install.sh) downloads the pinned v1.1.0 release, checks its SHA-256, and installs or upgrades the widget for the current user. After installation, open desktop edit mode → **Add Widgets**, then search for **Hong Kong Transit Departures**. Existing widget settings are preserved. You may need to restart the Plasma shell or log out and back in for the widget list to refresh.

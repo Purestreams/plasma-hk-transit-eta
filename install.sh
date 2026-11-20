@@ -22,7 +22,7 @@ trap 'rm -rf -- "$temp_dir"' EXIT
 archive_path="${temp_dir}/${archive_name}"
 
 printf 'Downloading Hong Kong Transit Departures v%s...\n' "$version"
-curl --fail --silent --show-error --location --retry 3 --proto '=https' --tlsv1.2 \
+curl --fail --silent --show-error --location --retry 3 --retry-all-errors --proto '=https' --tlsv1.2 \
     --output "$archive_path" "$release_url"
 if ! printf '%s  %s\n' "$expected_sha256" "$archive_path" | sha256sum --check --status; then
     printf 'Error: the downloaded package failed SHA-256 verification.\n' >&2
