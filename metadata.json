@@ -1,0 +1,18 @@
+{
+  "KPlugin": {
+    "Id": "com.example.hkbuseta",
+    "Name": "Hong Kong Transit Departures",
+    "Description": "Bus arrivals and MTR departure planning",
+    "Icon": "/icons/transit.svg",
+    "Version": "1.1.0",
+    "License": "MIT",
+    "Category": "Travel",
+    "Name[zh_CN]": "香港交通出发提醒",
+    "Name[zh_TW]": "香港交通出發提醒",
+    "Name[zh_HK]": "香港交通出發提醒",
+    "Description[zh_CN]": "巴士到站与港铁出发提醒",
+    "Description[zh_TW]": "巴士到站及港鐵出發提醒"
+  },
+  "X-Plasma-API-Minimum-Version": "6.0",
+  "KPackageStructure": "Plasma/Applet"
+}
