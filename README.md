@@ -10,9 +10,23 @@ These locally rendered QML previews use example data, rather than a live desktop
 | --- | --- | --- |
 | <img src="docs/screenshots/en.png" alt="English widget preview" width="280"> | <img src="docs/screenshots/zh-CN.png" alt="简体中文小组件预览" width="280"> | <img src="docs/screenshots/zh-HK.png" alt="繁體中文小工具預覽" width="280"> |
 
-## Install
+## Quick install / 一键安装 / 一鍵安裝
 
-Requires Plasma 6, network access, the standard Plasma QML components, and the KNotifications QML module (`org.kde.notification`). Download the `.plasmoid` package from [the latest release](https://github.com/Purestreams/plasma-hk-transit-eta/releases/latest), then install it with:
+Requires KDE Plasma 6, `curl`, `sha256sum`, `kpackagetool6`, and the Plasma/KNotifications QML components. Run:
+
+```sh
+bash -o pipefail -c 'curl -fsSL https://raw.githubusercontent.com/Purestreams/plasma-hk-transit-eta/main/install.sh | bash'
+```
+
+The [installer](install.sh) downloads the pinned v1.1.0 release, checks its SHA-256, and installs or upgrades the widget for the current user. After installation, open desktop edit mode → **Add Widgets**, then search for **Hong Kong Transit Departures**. Existing widget settings are preserved. You may need to restart the Plasma shell or log out and back in for the widget list to refresh.
+
+简体中文：复制上面的命令即可安装或更新；安装后在桌面编辑模式的「添加小组件」中搜索「香港交通出发提醒」。脚本会校验安装包，并保留已有设置。
+
+繁體中文：複製上方指令即可安裝或更新；安裝後在桌面編輯模式的「新增元件」中搜尋「香港交通出發提醒」。腳本會驗證安裝套件並保留現有設定。
+
+## Manual install
+
+Download the `.plasmoid` package from [the latest release](https://github.com/Purestreams/plasma-hk-transit-eta/releases/latest), then install it with:
 
 ```sh
 kpackagetool6 --type Plasma/Applet --install ./hong-kong-transit-departures-v1.1.0.plasmoid
